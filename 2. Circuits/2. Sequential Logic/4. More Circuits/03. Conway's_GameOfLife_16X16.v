@@ -17,13 +17,12 @@ load: Loads data into q at the next clock edge, for loading initial state.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-module top_module(
-    input clk,
-    input load,
-    input [255:0] data,
-    output [255:0] q ); 
-    
-     wire [2:0] pop;
+module rule (
+    input [7:0] neigh,
+    input current,
+    output next );
+
+    wire [2:0] pop;
     assign pop = {2'b00, neigh[0]} +
                  {2'b00, neigh[1]} +
                  {2'b00, neigh[2]} +
@@ -80,5 +79,4 @@ module top_module(
             q <= next;
         end
     end
-
 endmodule
