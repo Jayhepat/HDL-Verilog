@@ -5,6 +5,7 @@ In particular, if a Lemming is bumped on the left, it will walk right. If it's b
 
 Implement a Moore state machine with two states, two inputs, and one output that models this behaviour.
 
+    LEMMING : https://hdlbits.01xz.net/mw/images/d/de/Lemmings.gif
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 module top_module(
