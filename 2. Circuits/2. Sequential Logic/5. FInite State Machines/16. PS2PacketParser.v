@@ -7,20 +7,18 @@ We then assume that this is byte 1 of a message, and signal the receipt of a mes
 The FSM should signal done in the cycle immediately after the third byte of each message was successfully received.
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
 module top_module(
     input clk,
     input [7:0] in,
     input reset,    // Synchronous reset
     output done); //
-    
+
      localparam [1:0] BYTE1 = 2'b00,
     				 BYTE2 = 2'b01,
     				 BYTE3 = 2'b10,
     				 DONE  = 2'b11;
 
     reg [1:0] state, next;
-    reg [23:0] data;
 
     // State transition logic (combinational)
     always @(*) begin
@@ -38,14 +36,8 @@ module top_module(
     	else state <= next;
     end
  
-    // New: Datapath to store incoming bytes.
-    always @(posedge clk) begin
-    	if (reset) data <= 24'b0;
-    	else data <= {data[15:8], data[7:0], in};
-    end
-    
     // Output logic
     assign done = (state == DONE);
-    assign out_bytes = (done) ? data : 24'b0;
+
 
 endmodule
